@@ -6,6 +6,7 @@ package frc.robot;
 
 import com.revrobotics.CANSparkMax.IdleMode;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -45,11 +46,13 @@ public final class Constants {
         new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
         new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
 
-    // Angular offsets of the modules relative to the chassis in radians
-    public static final double kFrontLeftChassisAngularOffset = -Math.PI / 2;
-    public static final double kFrontRightChassisAngularOffset = 0;
-    public static final double kBackLeftChassisAngularOffset = Math.PI;
-    public static final double kBackRightChassisAngularOffset = Math.PI / 2;
+    // Angular offsets here describe how the swerve modules are physically rotated with respect to
+    // to the chassis. There should be offsets at 0, 90, 180, and 270 degrees for a rectangular
+    // chassis.
+    public static final Rotation2d kFrontLeftChassisAngularOffset = Rotation2d.fromDegrees(-90);
+    public static final Rotation2d kFrontRightChassisAngularOffset = Rotation2d.fromDegrees(0);
+    public static final Rotation2d kRearLeftChassisAngularOffset = Rotation2d.fromDegrees(180);
+    public static final Rotation2d kRearRightChassisAngularOffset = Rotation2d.fromDegrees(90);
 
     // SPARK MAX CAN IDs
     public static final int kFrontLeftDrivingCanId = 7;
